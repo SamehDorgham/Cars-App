@@ -1288,7 +1288,7 @@ QDateEdit::down-arrow:focus {
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1650,7 +1650,7 @@ QDateEdit::down-arrow:focus {
      <attribute name="title">
       <string>الوقود</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="liter_number">
       <property name="geometry">
        <rect>
         <x>317</x>
@@ -1672,7 +1672,7 @@ QDateEdit::down-arrow:focus {
        <string>عدد الليترات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_14">
+     <widget class="QLineEdit" name="liter_price">
       <property name="geometry">
        <rect>
         <x>315</x>
@@ -1691,7 +1691,7 @@ QDateEdit::down-arrow:focus {
        <string>سعر الليتر</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_15">
+     <widget class="QLineEdit" name="tips">
       <property name="geometry">
        <rect>
         <x>315</x>
@@ -1710,7 +1710,7 @@ QDateEdit::down-arrow:focus {
        <string>الإكراميات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_16">
+     <widget class="QLineEdit" name="meter_reading">
       <property name="geometry">
        <rect>
         <x>315</x>
@@ -1749,14 +1749,19 @@ QDateEdit::down-arrow:focus {
        <string>الإجمالي</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber">
+     <widget class="QLCDNumber" name="lcdtotal_fuel">
       <property name="geometry">
        <rect>
         <x>130</x>
         <y>144</y>
-        <width>91</width>
+        <width>121</width>
         <height>61</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_Update_Fuel_Info">
@@ -3738,7 +3743,7 @@ QDateEdit::down-arrow:focus {
      </attribute>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_39">
+   <widget class="QLineEdit" name="txt_Search_For_CarData_By_CarNo">
     <property name="geometry">
      <rect>
       <x>243</x>
@@ -3851,7 +3856,7 @@ QDateEdit::down-arrow:focus {
      <x>0</x>
      <y>0</y>
      <width>888</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
