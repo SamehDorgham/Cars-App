@@ -52,19 +52,19 @@ class MainApp(QMainWindow, form_class):
         self.btn_Add_Fuel_Info.clicked.connect(self.Update_Fuel_Info)
         self.btn_Update_Fuel_Info.clicked.connect(self.Update_Fuel_Info)
 
-        self.btn_Add_Maintenance_Info.clicked.connect(self.Add_Maintenance_Info)
+        self.btn_Add_Maintenance_Info.clicked.connect(self.Update_Maintenance_Info)
         self.btn_Update_Maintenance_Info.clicked.connect(self.Update_Maintenance_Info)
 
-        self.btn_Add_Licence_Info.clicked.connect(self.Add_Licence_Info)
+        self.btn_Add_Licence_Info.clicked.connect(self.Update_Licence_Info)
         self.btn_Update_Licence_Info.clicked.connect(self.Update_Licence_Info)
 
-        self.btn_Add_Revenu_Info.clicked.connect(self.Add_Revenu_Info)
+        self.btn_Add_Revenu_Info.clicked.connect(self.Update_Revenu_Info)
         self.btn_Update_Revenu_Info.clicked.connect(self.Update_Revenu_Info)
 
-        self.btn_Add_Rent_Info.clicked.connect(self.Add_Rent_Info)
+        self.btn_Add_Rent_Info.clicked.connect(self.Update_Rent_Info)
         self.btn_Update_Rent_Info.clicked.connect(self.Update_Rent_Info)
 
-        self.btn_Add_ElectricityWater_Info.clicked.connect(self.Add_ele_water_Info)
+        self.btn_Add_ElectricityWater_Info.clicked.connect(self.Update_ele_water_Info)
         self.btn_Update_ElectricityWater_Info.clicked.connect(self.Update_ele_water_Info)
         self.btn_Search_For_CarData_By_CarNo.clicked.connect(self.Search)
 
@@ -128,7 +128,26 @@ class MainApp(QMainWindow, form_class):
         ######################## Tab 2 ###########################
 
         if self.listWidget.row(self.listWidget.currentItem()) == 2:
-            print("tab1")
+
+            sql = ''' SELECT * FROM maintenance_info WHERE car_number = %s'''
+            car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+            self.cursor.execute(sql, [(car_number)])
+
+            data = self.cursor.fetchall()
+
+            for row in data:
+                print(row)
+                self.txt_engine_amra.setText(row[1])
+                self.txt_mechanics.setText(row[2])
+                self.txt_electricity.setText(row[3])
+                self.txt_samkara.setText(row[4])
+                self.txt_afsha.setText(row[5])
+                self.txt_periodic_maintenance.setText(row[6])
+                self.txt_cooling.setText(row[7])
+                self.txt_glass.setText(row[8])
+                self.txt_notes.setPlainText(row[9])
+
 
 
 
@@ -346,17 +365,39 @@ class MainApp(QMainWindow, form_class):
     ###############################################################
     ############## Maintenance Info  ##############
 
-    def Add_Maintenance_Info(self):
-        pass
 
     def Update_Maintenance_Info(self):
-        pass
+
+        car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+        engine_amra = self.txt_engine_amra.text()
+        mechanics = self.txt_mechanics.text()
+        electricity = self.txt_electricity.text()
+        samkara = self.txt_samkara.text()
+        afsha = self.txt_afsha.text()
+        periodic_maintenance = self.txt_periodic_maintenance.text()
+        cooling = self.txt_cooling.text()
+        glass = self.txt_glass.text()
+        notes = self.txt_notes.toPlainText()
+
+
+        self.cursor.execute(''' UPDATE maintenance_info SET engine_amra = %s , mechanics = %s , electricity = %s ,samkara = %s , afsha = %s , periodic_maintenance = %s , cooling = %s , glass = %s , notes = %s WHERE car_number = %s''' ,
+        (engine_amra , mechanics ,electricity , samkara , afsha , periodic_maintenance , cooling , glass , notes , car_number  ))
+
+        self.cnx.commit()
+
+        self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
+
+
+
+
+
+
 
     ###############################################################
     ############## Licence Info  ##############
 
-    def Add_Licence_Info(self):
-        pass
+
 
     def Update_Licence_Info(self):
         pass
@@ -364,8 +405,6 @@ class MainApp(QMainWindow, form_class):
     ###############################################################
     ############## Revenu Info  ##############
 
-    def Add_Revenu_Info(self):
-        pass
 
     def Update_Revenu_Info(self):
         pass
@@ -373,8 +412,6 @@ class MainApp(QMainWindow, form_class):
     ###############################################################
     ############## Rent Info  ##############
 
-    def Add_Rent_Info(self):
-        pass
 
     def Update_Rent_Info(self):
         pass
@@ -382,8 +419,6 @@ class MainApp(QMainWindow, form_class):
     ###############################################################
     ############## Electricity & Water Info  ##############
 
-    def Add_ele_water_Info(self):
-        pass
 
     def Update_ele_water_Info(self):
         pass

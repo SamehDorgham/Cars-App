@@ -1288,7 +1288,7 @@ QDateEdit::down-arrow:focus {
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1807,7 +1807,7 @@ QDateEdit::down-arrow:focus {
      <attribute name="title">
       <string>الصيانة</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="txt_afsha">
       <property name="geometry">
        <rect>
         <x>392</x>
@@ -1826,7 +1826,7 @@ QDateEdit::down-arrow:focus {
        <string>العفشة</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_17">
+     <widget class="QLineEdit" name="txt_engine_amra">
       <property name="geometry">
        <rect>
         <x>394</x>
@@ -1848,7 +1848,7 @@ QDateEdit::down-arrow:focus {
        <string>عمرة المحركات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_18">
+     <widget class="QLineEdit" name="txt_periodic_maintenance">
       <property name="geometry">
        <rect>
         <x>390</x>
@@ -1867,7 +1867,7 @@ QDateEdit::down-arrow:focus {
        <string>الصيانة الدورية</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_19">
+     <widget class="QLineEdit" name="txt_samkara">
       <property name="geometry">
        <rect>
         <x>392</x>
@@ -1886,7 +1886,7 @@ QDateEdit::down-arrow:focus {
        <string>السمكرة</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_20">
+     <widget class="QLineEdit" name="txt_electricity">
       <property name="geometry">
        <rect>
         <x>392</x>
@@ -1905,7 +1905,7 @@ QDateEdit::down-arrow:focus {
        <string>الكهرباء</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_22">
+     <widget class="QLineEdit" name="txt_cooling">
       <property name="geometry">
        <rect>
         <x>73</x>
@@ -1924,7 +1924,7 @@ QDateEdit::down-arrow:focus {
        <string>التبريد</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_23">
+     <widget class="QLineEdit" name="txt_mechanics">
       <property name="geometry">
        <rect>
         <x>392</x>
@@ -1943,7 +1943,7 @@ QDateEdit::down-arrow:focus {
        <string>الميكانيكا</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_25">
+     <widget class="QLineEdit" name="txt_glass">
       <property name="geometry">
        <rect>
         <x>72</x>
@@ -1962,7 +1962,7 @@ QDateEdit::down-arrow:focus {
        <string>الزجاج</string>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
+     <widget class="QPlainTextEdit" name="txt_notes">
       <property name="geometry">
        <rect>
         <x>72</x>
