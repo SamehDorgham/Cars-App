@@ -79,6 +79,7 @@ class MainApp(QMainWindow, form_class):
         ######################## Tab 0 ###########################
 
         if self.listWidget.row(self.listWidget.currentItem()) == 0:
+
             sql = ''' SELECT * FROM car_info WHERE car_number = %s'''
             car_number = self.txt_Search_For_CarData_By_CarNo.text()
 
@@ -156,16 +157,44 @@ class MainApp(QMainWindow, form_class):
 
 
         if self.listWidget.row(self.listWidget.currentItem()) == 3:
-            print("tab1")
 
+            sql = ''' SELECT * FROM licence_info WHERE car_number = %s'''
+            car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+            self.cursor.execute(sql, [(car_number)])
+
+            data = self.cursor.fetchall()
+
+            for row in data:
+                print(row)
+                self.txt_annual_renew.setText(row[1])
+                self.txt_newcar_licence.setText(row[2])
+                self.txt_renew_permission.setText(row[3])
+                self.txt_infraction_info.setText(row[4])
+                self.txt_annual_infraction.setText(row[5])
+                self.txt_stamping_receipts.setText(row[6])
+                self.txt_withdrawn_licence.setText(row[7])
+                self.txt_withdrawn_infraction.setText(row[8])
 
 
 
         ######################## Tab 4 ###########################
 
         if self.listWidget.row(self.listWidget.currentItem()) == 4:
-            print("tab1")
 
+            sql = ''' SELECT * FROM revenue_info WHERE car_number = %s'''
+            car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+            self.cursor.execute(sql, [(car_number)])
+
+            data = self.cursor.fetchall()
+
+            for row in data:
+                print(row)
+
+                self.txt_kohna_selling.setText(row[1])
+                self.txt_insurance_compensation.setText(row[2])
+                self.txt_accedint_compensation.setText(row[3])
 
 
 
@@ -246,6 +275,7 @@ class MainApp(QMainWindow, form_class):
     def Update_Car_Info(self):
 
         car_number = self.txt_Car_Car_Number.text()
+
         owner_company = self.txt_Car_Owner_Company.text()
         branch = self.txt_Car_Branch.text()
         service_mode = self.cbo_Car_Service_Mode.currentIndex()
@@ -352,8 +382,7 @@ class MainApp(QMainWindow, form_class):
 
         # Execute the SQL command
 
-        self.cursor.execute("""UPDATE fuel_info SET liter_number = %s,counter_reading = %s,tips = %s,liter_price = %s,total = %s WHERE car_number = %s"""
-                            ,(liter_number, meter_reading, tips, liter_price, total, car_number))
+        self.cursor.execute("""UPDATE fuel_info SET liter_number = %s,counter_reading = %s,tips = %s,liter_price = %s,total = %s WHERE car_number = %s""",(liter_number, meter_reading, tips, liter_price, total, car_number))
 
         self.cnx.commit()
 
@@ -381,7 +410,7 @@ class MainApp(QMainWindow, form_class):
         notes = self.txt_notes.toPlainText()
 
 
-        self.cursor.execute(''' UPDATE maintenance_info SET engine_amra = %s , mechanics = %s , electricity = %s ,samkara = %s , afsha = %s , periodic_maintenance = %s , cooling = %s , glass = %s , notes = %s WHERE car_number = %s''' ,
+        self.cursor.execute(""" UPDATE maintenance_info SET engine_amra = %s , mechanics = %s , electricity = %s ,samkara = %s , afsha = %s , periodic_maintenance = %s , cooling = %s , glass = %s , notes = %s WHERE car_number = %s """,
         (engine_amra , mechanics ,electricity , samkara , afsha , periodic_maintenance , cooling , glass , notes , car_number  ))
 
         self.cnx.commit()
@@ -400,14 +429,51 @@ class MainApp(QMainWindow, form_class):
 
 
     def Update_Licence_Info(self):
-        pass
+
+        car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+        annual_renew = self.txt_annual_renew.text()
+        newcar_licence = self.txt_newcar_licence.text()
+        renew_permission = self.txt_renew_permission.text()
+        infraction_info = self.txt_infraction_info.text()
+        annual_infraction = self.txt_annual_infraction.text()
+        stamping_receipts = self.txt_stamping_receipts.text()
+        withdrawn_licence = self.txt_withdrawn_licence.text()
+        withdrawn_infraction = self.txt_withdrawn_infraction.text()
+
+        self.cursor.execute(""" UPDATE licence_info SET annual_renew = %s ,newcar_licence = %s , renew_permission = %s ,infraction_info = %s , annual_infraction = %s , stamping_receipts = %s , withdrawn_licence = %s , withdrawn_infraction = %s WHERE car_number = %s """ ,
+        (annual_renew , newcar_licence , renew_permission , infraction_info , annual_infraction ,stamping_receipts , withdrawn_licence , withdrawn_infraction , car_number))
+
+        self.cnx.commit()
+
+        self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
+
+
+
 
     ###############################################################
     ############## Revenu Info  ##############
 
 
     def Update_Revenu_Info(self):
-        pass
+
+        car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+        kohna_selling = self.txt_kohna_selling.text()
+        insurance_compensation = self.txt_insurance_compensation.text()
+        accedint_compensation = self.txt_accedint_compensation.text()
+
+        self.cursor.execute(
+            """ UPDATE revenue_info SET kohna_selling = %s ,insurance_compensation = %s , accedint_compensation = %s WHERE car_number = %s """,
+            (kohna_selling, insurance_compensation, accedint_compensation , car_number))
+
+        self.cnx.commit()
+
+        self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
+
+
+
+
 
     ###############################################################
     ############## Rent Info  ##############

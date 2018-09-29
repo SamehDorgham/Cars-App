@@ -1288,7 +1288,7 @@ QDateEdit::down-arrow:focus {
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -2037,7 +2037,7 @@ QDateEdit::down-arrow:focus {
      <attribute name="title">
       <string>التراخيص</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_21">
+     <widget class="QLineEdit" name="txt_infraction_info">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -2056,7 +2056,7 @@ QDateEdit::down-arrow:focus {
        <string>المخالفات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_24">
+     <widget class="QLineEdit" name="txt_annual_infraction">
       <property name="geometry">
        <rect>
         <x>64</x>
@@ -2075,7 +2075,7 @@ QDateEdit::down-arrow:focus {
        <string>المخالفات السنوية</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_26">
+     <widget class="QLineEdit" name="txt_newcar_licence">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -2094,7 +2094,7 @@ QDateEdit::down-arrow:focus {
        <string>رخصة سيارة جديدة</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_27">
+     <widget class="QLineEdit" name="txt_withdrawn_licence">
       <property name="geometry">
        <rect>
         <x>63</x>
@@ -2113,7 +2113,7 @@ QDateEdit::down-arrow:focus {
        <string>غرامة رخصة</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_28">
+     <widget class="QLineEdit" name="txt_withdrawn_infraction">
       <property name="geometry">
        <rect>
         <x>62</x>
@@ -2132,7 +2132,7 @@ QDateEdit::down-arrow:focus {
        <string>غرامة مخالفات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_29">
+     <widget class="QLineEdit" name="txt_stamping_receipts">
       <property name="geometry">
        <rect>
         <x>62</x>
@@ -2151,7 +2151,7 @@ QDateEdit::down-arrow:focus {
        <string>الإيصالات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_30">
+     <widget class="QLineEdit" name="txt_renew_permission">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -2170,7 +2170,7 @@ QDateEdit::down-arrow:focus {
        <string>تصريح التجديد</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_31">
+     <widget class="QLineEdit" name="txt_annual_renew">
       <property name="geometry">
        <rect>
         <x>372</x>
@@ -2273,7 +2273,7 @@ QDateEdit::down-arrow:focus {
        <string>تعديل معلومات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_32">
+     <widget class="QLineEdit" name="txt_kohna_selling">
       <property name="geometry">
        <rect>
         <x>222</x>
@@ -2295,7 +2295,7 @@ QDateEdit::down-arrow:focus {
        <string>بيع الكهنة</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_33">
+     <widget class="QLineEdit" name="txt_accedint_compensation">
       <property name="geometry">
        <rect>
         <x>220</x>
@@ -2314,7 +2314,7 @@ QDateEdit::down-arrow:focus {
        <string>تعويضات الحوادث</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_34">
+     <widget class="QLineEdit" name="txt_insurance_compensation">
       <property name="geometry">
        <rect>
         <x>220</x>
