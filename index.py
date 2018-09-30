@@ -66,6 +66,7 @@ class MainApp(QMainWindow, form_class):
 
         self.btn_Add_ElectricityWater_Info.clicked.connect(self.Update_ele_water_Info)
         self.btn_Update_ElectricityWater_Info.clicked.connect(self.Update_ele_water_Info)
+
         self.btn_Search_For_CarData_By_CarNo.clicked.connect(self.Search)
 
 
@@ -201,7 +202,37 @@ class MainApp(QMainWindow, form_class):
         ######################## Tab 5 ###########################
 
         if self.listWidget.row(self.listWidget.currentItem()) == 5:
-            print("tab1")
+
+            sql = ''' SELECT * FROM rent_info WHERE car_number = %s'''
+            car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+            self.cursor.execute(sql, [(car_number)])
+
+            data = self.cursor.fetchall()
+
+            for row in data:
+                print(row)
+                self.txt_monthly_revenu.setText(row[1])
+                self.txt_arab_ghofra.setText(row[2])
+
+
+
+
+        ######################## Tab 6 ###########################
+
+        if self.listWidget.row(self.listWidget.currentItem()) == 6:
+
+            sql = ''' SELECT * FROM WAEL_info WHERE car_number = %s'''
+            car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+            self.cursor.execute(sql, [(car_number)])
+
+            data = self.cursor.fetchall()
+
+            for row in data:
+                print(row)
+                self.txt_electricity_expenses.setText(row[1])
+                self.txt_water_expenses.setText(row[2])
 
 
 
@@ -480,14 +511,41 @@ class MainApp(QMainWindow, form_class):
 
 
     def Update_Rent_Info(self):
-        pass
+
+        car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+        monthly_revenu = self.txt_monthly_revenu.text()
+        arab_ghofra = self.txt_arab_ghofra.text()
+
+
+        self.cursor.execute(
+            """ UPDATE rent_info SET monthly_revenu = %s ,arab_ghofra = %s WHERE car_number = %s """,
+            (monthly_revenu, arab_ghofra , car_number))
+
+        self.cnx.commit()
+
+        self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
 
     ###############################################################
     ############## Electricity & Water Info  ##############
 
 
     def Update_ele_water_Info(self):
-        pass
+
+        car_number = self.txt_Search_For_CarData_By_CarNo.text()
+
+        electricity_expenses = self.txt_electricity_expenses.text()
+        water_expenses = self.txt_water_expenses.text()
+
+        self.cursor.execute(
+            """ UPDATE WAEL_info SET electricity_expenses = %s ,water_expenses = %s WHERE car_number = %s """,
+            (electricity_expenses, water_expenses, car_number))
+
+        self.cnx.commit()
+
+        self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
+
+
 
     ###############################################################
 

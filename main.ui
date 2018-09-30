@@ -1288,7 +1288,7 @@ QDateEdit::down-arrow:focus {
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>6</number>
     </property>
     <property name="iconSize">
      <size>
@@ -2357,7 +2357,7 @@ QDateEdit::down-arrow:focus {
        <string>إضافة معلومات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_35">
+     <widget class="QLineEdit" name="txt_monthly_revenu">
       <property name="geometry">
        <rect>
         <x>208</x>
@@ -2379,7 +2379,7 @@ QDateEdit::down-arrow:focus {
        <string>العائد الشهري</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_37">
+     <widget class="QLineEdit" name="txt_arab_ghofra">
       <property name="geometry">
        <rect>
         <x>207</x>
@@ -2422,7 +2422,7 @@ QDateEdit::down-arrow:focus {
      <attribute name="title">
       <string>الكهرباء</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_36">
+     <widget class="QLineEdit" name="txt_electricity_expenses">
       <property name="geometry">
        <rect>
         <x>201</x>
@@ -2482,7 +2482,7 @@ QDateEdit::down-arrow:focus {
        <string>إضافة معلومات</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_38">
+     <widget class="QLineEdit" name="txt_water_expenses">
       <property name="geometry">
        <rect>
         <x>200</x>
