@@ -10,7 +10,58 @@ from os import path
 import mysql.connector
 from mysql.connector import errorcode
 
+import xlsxwriter
+
+
 form_class, _ = loadUiType(path.join(path.dirname(__file__), "main.ui"))
+form_class2, _ = loadUiType(path.join(path.dirname(__file__), "login.ui"))
+
+
+class Login(QMainWindow, form_class2):
+
+    def __init__(self, parent=None):
+        super(Login, self).__init__(parent)
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+        self.btn_Login.clicked.connect(self.Handel_Login)
+        self.window2 = None
+
+
+    def Handel_Login(self):
+
+        self.cnx = mysql.connector.connect(user='root', password='',
+                                           host='127.0.0.1',
+                                           database='mydb')
+        self.cursor = self.cnx.cursor()
+
+
+
+
+
+        User_Name = self.txt_User_Name.text()
+        Password = self.txt_Password.text()
+
+        sql = ''' SELECT * FROM users '''
+
+        self.cursor.execute(sql)
+
+        data = self.cursor.fetchall()
+
+        for row in data:
+
+            if row[1] == User_Name and row[2] == Password :
+
+                self.window2 = MainApp()
+                self.close()
+                self.window2.show()
+
+            else:
+                self.label_MMessages.setText("يرجي التأكد من اسم المستخدم و كلمة المرور")
+
+
+
+
+
 
 
 class MainApp(QMainWindow, form_class):
@@ -45,6 +96,10 @@ class MainApp(QMainWindow, form_class):
         #   cnx.close()
 
     def Handel_buttons(self):
+
+
+        ############## First 7 Tabs ##############
+
         self.btn_Add_Car_Info.clicked.connect(self.Add_Car_Info)
         self.btn_Update_Car_Info.clicked.connect(self.Update_Car_Info)
         self.btn_Delete_Car_Info.clicked.connect(self.Delete_Car_Info)
@@ -68,6 +123,24 @@ class MainApp(QMainWindow, form_class):
         self.btn_Update_ElectricityWater_Info.clicked.connect(self.Update_ele_water_Info)
 
         self.btn_Search_For_CarData_By_CarNo.clicked.connect(self.Search)
+
+
+        ############## Tab Reports ##############
+
+
+
+
+        ############## Tab Users ##############
+
+        self.btn_Add_User.clicked.connect(self.Create_User)
+        self.btn_Update_User_Password.clicked.connect(self.Update_User_Password)
+
+
+
+
+
+
+
 
 
 
@@ -547,12 +620,74 @@ class MainApp(QMainWindow, form_class):
 
 
 
+
     ###############################################################
+    ############## Users ##############
+
+
+    def Create_User(self):
+
+        User_name = self.txt_User_Name.text()
+        Password1 = self.txt_Password1.text()
+        Password2 = self.txt_Password2.text()
+
+        if Password1 == Password2 and len(Password1) >= 8:
+            self.cursor.execute(""" INSERT INTO users (user_name, password) VALUES ( %s , %s ) """ , (User_name,Password1))
+
+            self.cnx.commit()
+
+            self.statusbar.showMessage("تم إضافة المعلومات بنجاح")
+
+        else:
+            print("Password is not Valid")
+            QMessageBox.warning(self , "Error" , "كلمة المرور غير متطابقة .. كلمة السر يجب أن تكون متطابقة و أكبر من 8 حروف" , QMessageBox.Ok)
+
+
+
+
+
+    def Update_User_Password(self):
+
+        User_Name = self.txt_User_Name1.text()
+        OldPassword = self.txt_Old_Password.text()
+        NewPassword1 = self.txt_New_Password1.text()
+        NewPassword2 = self.txt_New_Password2.text()
+
+        sql = ''' SELECT * FROM users '''
+
+        self.cursor.execute(sql)
+
+        data = self.cursor.fetchall()
+
+        for row in data:
+
+            if row[1] == User_Name and row[2] == OldPassword :
+
+                if NewPassword1 == NewPassword2 :
+
+                    self.cursor.execute(""" UPDATE users SET password = %s WHERE user_name = %s and password = %s """ , (NewPassword1 , row[1] , row[2]))
+                    self.cnx.commit()
+
+                    self.statusbar.showMessage("تم تعديل المعلومات بنجاح")
+
+
+                else:
+                    QMessageBox.warning(self, "Error",
+                                        "كلمة المرور غير متطابقة .. كلمة السر يجب أن تكون متطابقة و أكبر من 8 حروف",
+                                        QMessageBox.Ok)
+
+
+
+
+############################################################################
+############################################################################
+############################################################################
 
 
 def main():
     app = QApplication(sys.argv)
-    window = MainApp()
+    #window = MainApp()
+    window = Login()
     window.show()
     app.exec_()
 
